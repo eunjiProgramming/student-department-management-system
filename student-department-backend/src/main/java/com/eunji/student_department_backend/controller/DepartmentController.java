@@ -2,6 +2,7 @@ package com.eunji.student_department_backend.controller;
 
 import com.eunji.student_department_backend.dto.DepartmentDto;
 import com.eunji.student_department_backend.service.DepartmentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class DepartmentController {
 
     // 학과 생성 REST API
     @PostMapping
-    public ResponseEntity<DepartmentDto> createDepartment(@RequestBody DepartmentDto departmentDto) {
+    public ResponseEntity<DepartmentDto> createDepartment(@Valid @RequestBody DepartmentDto departmentDto) {
         DepartmentDto department = departmentService.createDepartment(departmentDto);
         return new ResponseEntity<>(department, HttpStatus.CREATED);
     }
@@ -44,7 +45,7 @@ public class DepartmentController {
 
     // 학과 정보 업데이트 REST API
     @PutMapping("{id}")
-    public ResponseEntity<DepartmentDto> updateDepartment(@PathVariable("id") Long departmentId, @RequestBody DepartmentDto updatedDepartment) {
+    public ResponseEntity<DepartmentDto> updateDepartment(@PathVariable("id") Long departmentId, @Valid @RequestBody DepartmentDto updatedDepartment) {
         DepartmentDto departmentDto = departmentService.updateDepartment(departmentId, updatedDepartment);
         return ResponseEntity.ok(departmentDto);
     }

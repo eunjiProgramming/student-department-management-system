@@ -1,8 +1,9 @@
 package com.eunji.student_department_backend.controller;
 
-import lombok.AllArgsConstructor;
 import com.eunji.student_department_backend.dto.StudentDto;
 import com.eunji.student_department_backend.service.StudentService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class StudentController {
 
     // 학생 생성 REST API
     @PostMapping
-    public ResponseEntity<StudentDto> createStudent(@RequestBody StudentDto studentDto){
+    public ResponseEntity<StudentDto> createStudent(@Valid @RequestBody StudentDto studentDto){
         StudentDto savedStudent = studentService.createStudent(studentDto);
         return new ResponseEntity<>(savedStudent, HttpStatus.CREATED);
     }
@@ -41,7 +42,7 @@ public class StudentController {
     // 학생 정보 업데이트 REST API
     @PutMapping("{id}")
     public ResponseEntity<StudentDto> updateStudent(@PathVariable("id") Long studentId,
-                                                    @RequestBody StudentDto updatedStudent){
+                                                    @Valid @RequestBody StudentDto updatedStudent){
         StudentDto studentDto = studentService.updateStudent(studentId, updatedStudent);
         return ResponseEntity.ok(studentDto);
     }
