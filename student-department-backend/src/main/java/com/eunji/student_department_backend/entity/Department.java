@@ -29,4 +29,10 @@ public class Department {
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Student> students = new ArrayList<>();
+
+    public Department(Long id, String departmentName, String departmentDescription) {
+        this.id = id;
+        this.departmentName = departmentName;
+        this.departmentDescription = departmentDescription;
+    }
 }
