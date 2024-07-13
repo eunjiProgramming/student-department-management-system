@@ -1,0 +1,59 @@
+header {
+  background-color: black;
+  width: 100vw;
+  height: 57px;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  padding: 10px;
+}
+
+.management-nav {
+  flex: 1;
+  padding-left: 30px;
+}
+
+.management-ul {
+  display: flex;
+  align-items: center;
+  color: white;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.student-management {
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.department-management {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
