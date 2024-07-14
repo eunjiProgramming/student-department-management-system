@@ -53,6 +53,7 @@ const ListStudentComponent = () => {
               <th>학생 성</th>
               <th>학생 이름</th>
               <th>학생 이메일</th>
+              <th>학생 학과</th>
               <th>동작</th>
             </tr>
           </thead>
@@ -64,6 +65,7 @@ const ListStudentComponent = () => {
                   <td>{student.lastName}</td>
                   <td>{student.firstName}</td>
                   <td>{student.email}</td>
+                  <td>{student.departmentName || 'N/A'}</td>
                   <td>
                     <button
                       className='btn btn-info'
@@ -83,7 +85,7 @@ const ListStudentComponent = () => {
               ))
             ) : (
               <tr>
-                <td colSpan='5'>학생 목록이 없습니다.</td>
+                <td colSpan='6'>학생 목록이 없습니다.</td>
               </tr>
             )}
           </tbody>
