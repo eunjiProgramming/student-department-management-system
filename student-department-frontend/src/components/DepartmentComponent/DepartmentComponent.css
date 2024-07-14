@@ -38,6 +38,16 @@
   box-sizing: border-box;
 }
 
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: 5px;
+  font-size: 0.875rem;
+}
+
 .btn {
   background-color: #007bff;
   color: white;

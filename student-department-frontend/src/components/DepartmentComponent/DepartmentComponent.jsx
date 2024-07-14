@@ -10,6 +10,7 @@ import './DepartmentComponent.css';
 const DepartmentComponent = () => {
   const [departmentName, setDepartmentName] = useState('');
   const [departmentDescription, setDepartmentDescription] = useState('');
+  const [errors, setErrors] = useState({ departmentName: '' });
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -29,28 +30,46 @@ const DepartmentComponent = () => {
 
   const saveOrUpdateDepartment = (e) => {
     e.preventDefault();
-    const department = { departmentName, departmentDescription };
-    console.log(department);
 
-    if (id) {
-      updateDepartment(id, department)
-        .then((response) => {
-          console.log(response.data);
-          navigate('/departments');
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      createDepartment(department)
-        .then((response) => {
-          console.log(response.data);
-          navigate('/departments');
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+    if (validateForm()) {
+      const department = { departmentName, departmentDescription };
+      console.log(department);
+
+      if (id) {
+        updateDepartment(id, department)
+          .then((response) => {
+            console.log(response.data);
+            navigate('/departments');
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } else {
+        createDepartment(department)
+          .then((response) => {
+            console.log(response.data);
+            navigate('/departments');
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     }
+  };
+
+  const validateForm = () => {
+    let valid = true;
+    const errorsCopy = { ...errors };
+
+    if (departmentName.trim()) {
+      errorsCopy.departmentName = '';
+    } else {
+      errorsCopy.departmentName = '학과 이름은 필수입니다.';
+      valid = false;
+    }
+
+    setErrors(errorsCopy);
+    return valid;
   };
 
   const cancel = () => {
@@ -77,9 +96,12 @@ const DepartmentComponent = () => {
               name='departmentName'
               placeholder='학과 이름 입력'
               value={departmentName}
-              className='input'
+              className={`input ${errors.departmentName ? 'is-invalid' : ''}`}
               onChange={(e) => setDepartmentName(e.target.value)}
             />
+            {errors.departmentName && (
+              <div className='error-message'>{errors.departmentName}</div>
+            )}
           </div>
 
           <div className='form-group'>
