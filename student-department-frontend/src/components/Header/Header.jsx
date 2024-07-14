@@ -10,22 +10,12 @@ const Header = () => {
         <nav className='management-nav'>
           <ul className='management-ul'>
             <li className='student-management'>
-              <NavLink
-                to='/students'
-                className='link'
-                activeClassName='active'
-                exact
-              >
+              <NavLink to='/students' className='link'>
                 학생관리
               </NavLink>
             </li>
             <li className='department-management'>
-              <NavLink
-                to='/departments'
-                className='link'
-                activeClassName='active'
-                exact
-              >
+              <NavLink to='/departments' className='link'>
                 학과관리
               </NavLink>
             </li>
